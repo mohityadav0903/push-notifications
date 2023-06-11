@@ -24,12 +24,15 @@ app.post('/subscribe', (req, res) => {
 
   const payload = JSON.stringify({
     title: 'Push notifications with Service Workers',
+    body: 'This is a test notification',
+    
   });
 
   webPush.sendNotification(subscription, payload)
+  .then(result => console.log(result))
     .catch(error => console.error(error));
 });
 
-app.listen(5000, () => {
-  console.log('Server started on port 3000');
+app.listen(process.env.PORT||5000, () => {
+  console.log('Server started on port 5000');
 });
